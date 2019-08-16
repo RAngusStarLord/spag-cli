@@ -2,7 +2,9 @@
 
 NOTE - Only tested in MacOS Mojave.
 
-`pip install sp-games`
+`pip install sp-games` - This will pull for the PyPi where the solution is hosted.
+
+Local development teams can clone the git repo and run the `local_build.sh` to get the CLI tool locally in their Virtual environment or directory.
 
 ## Getting Started
 
@@ -53,3 +55,6 @@ Please note if you are searching for Rock Band 2 for example there are a lot of 
 - Types of information to respond with about a game
 - More API integrations...
  
+## Testing
+- Current tests only validate the response from Giant Bomb API and are not exhaustive.  These would need to be built out further before taking it to a production build.
+- Testing of the CLI components would also need to be added.  But my knowledge of testing argparse applications is non-existent.
