@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name="sp-games",
-    version="0.0.3",
+    version="0.0.4",
     description="CLI Utility to extract information from Giant Bomb",
     packages=find_packages(exclude=['tests*']),
     long_description=long_description,
