@@ -9,6 +9,7 @@ setup(
     description="CLI Utility to extract information from Giant Bomb",
     packages=find_packages(exclude=['tests*']),
     long_description=long_description,
+    long_description_content_type="text/markdown",
     install_requires=[
         "argparse",
         "PyInquirer",
