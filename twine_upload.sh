@@ -5,4 +5,4 @@ bumpversion --current-version $version patch ./setup.py
 
 git commit -am "bumping versions"
 
-#python -m twine upload dist/* --verbose
+python -m twine upload dist/* --verbose
