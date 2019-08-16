@@ -58,3 +58,6 @@ Please note if you are searching for Rock Band 2 for example there are a lot of 
 ## Testing
 - Current tests only validate the response from Giant Bomb API and are not exhaustive.  These would need to be built out further before taking it to a production build.
 - Testing of the CLI components would also need to be added.  But my knowledge of testing argparse applications is non-existent.
+
+## Documentation
+- Before opening this up for other developers to work on code documentation really needs to be added.  This should be done in the form of docstrings which could utilise Sphinx to auto generate a documentation page.
