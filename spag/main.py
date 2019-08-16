@@ -30,9 +30,9 @@ def main():
     if args.command == "configure":
         return puts(json.dumps(configure.update_api_key(), indent=4))
     if args.command == "search":
-        return puts(json.dumps(game.get_games(args), indent=4))
+        return puts(json.dumps(game.get_games(args.name), indent=4))
     if args.command == "game":
-        return puts(json.dumps(game.get_game(args), indent=4))
+        return puts(json.dumps(game.get_game(args.guid, args.dlc), indent=4))
     else:
         parser.print_help(sys.stderr)
 

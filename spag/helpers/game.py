@@ -2,7 +2,7 @@ import requests
 from spag.helpers import constants, urlJoin
 
 
-def get_games(args):
+def get_games(name):
 
     base_url = constants.gb_url
     extension = "/games/"
@@ -20,8 +20,8 @@ def get_games(args):
         "field_list": "name,guid"
     }
 
-    if "name" in args:
-        url_parameters.update({"filter": "name:%s" % args.name})
+    if name != "":
+        url_parameters.update({"filter": "name:%s" % name})
 
     headers = {
         "User-Agent": "SPAG Python CLI"
@@ -35,7 +35,7 @@ def get_games(args):
     return r["results"]
 
 
-def get_dlc(url):
+def get_dlc_date(url):
     try:
         f = open("key.txt", "r")
         key = f.read()
@@ -63,7 +63,7 @@ def get_dlc(url):
 
 def sort_dlcs(payload):
     for dlc in payload["results"]["dlcs"]:
-        release_date = get_dlc(dlc["api_detail_url"])
+        release_date = get_dlc_date(dlc["api_detail_url"])
         del dlc["api_detail_url"]
         del dlc["site_detail_url"]
         del dlc["id"]
@@ -74,10 +74,10 @@ def sort_dlcs(payload):
     return payload
 
 
-def get_game(args):
+def get_game(guid, dlc):
 
     base_url = constants.gb_url
-    extension = "/game/%s/" % args.guid
+    extension = "/game/%s/" % guid
 
     try:
         f = open("key.txt", "r")
@@ -96,7 +96,7 @@ def get_game(args):
         "User-Agent": "SPAG Python CLI"
     }
 
-    if args.dlc is True:
+    if dlc is True:
         url_parameters.update({"field_list": "name,guid,dlcs"})
 
     url = urlJoin.join_url(base_url, extension, url_parameters)
@@ -104,7 +104,7 @@ def get_game(args):
     r = requests.request("GET", url, headers=headers)
     r = r.json()
 
-    if args.dlc is True and "dlcs" in r["results"]:
+    if dlc is True and "dlcs" in r["results"]:
         r = sort_dlcs(r)
 
     return r["results"]
